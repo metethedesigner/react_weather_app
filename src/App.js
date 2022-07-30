@@ -2,21 +2,15 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
 import City from "./components/City"
+import {API_KEY,API_URL} from './config';
 
 function App() {
-  const key = "3152f625cab5bdde3332cb6dbec81c46";
   const [search, setSearch] = useState("");
   const [city, setCity] = useState();
   useEffect(() => {
-    async function getWeather() {
-      try {
-        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${key}&units=metric`);
-        setCity(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    getWeather();
+    axios.get(`${API_URL}?q=${search}&appid=${API_KEY}&units=metric`).then((r) => {
+      setCity(r.data);
+    });
   },[search])
 
   return (
