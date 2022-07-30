@@ -8,9 +8,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [city, setCity] = useState();
   useEffect(() => {
-    axios.get(`${API_URL}?q=${search}&appid=${API_KEY}&units=metric`).then((r) => {
-      setCity(r.data);
-    });
+    axios.get(`${API_URL}?q=${search}&appid=${API_KEY}&units=metric`).then(r =>  setCity(r.data));
   },[search])
 
   return (
